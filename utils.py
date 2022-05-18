@@ -21,16 +21,16 @@ def img_segmentation():
         return
 
     if a == 0:
-        
+
         return
 
     elif a == 1:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
 
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
 
         img = cv2.imread(img_path)
@@ -50,13 +50,13 @@ def img_segmentation():
 
         cv2.imwrite("results/result.jpg", Roberts)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 2:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
         img = cv2.imread(img_path)
 
@@ -75,13 +75,13 @@ def img_segmentation():
 
         cv2.imwrite("results/result.jpg", Sobel)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 3:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
         img = cv2.imread(img_path)
 
@@ -95,13 +95,13 @@ def img_segmentation():
 
         cv2.imwrite("results/result.jpg", Laplacian)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 4:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
         img = cv2.imread(img_path)
 
@@ -110,8 +110,8 @@ def img_segmentation():
         image = cv2.copyMakeBorder(img, 2, 2, 2, 2, borderType=cv2.BORDER_REPLICATE)
         image = cv2.GaussianBlur(image, (3, 3), 0, 0)
 
-
-        print("默认LoG算子为：[[0, 0, -1, 0, 0], [0, -1, -2, -1, 0], [-1, -2, 16, -2, -1], [0, -1, -2, -1, 0], [0, 0, -1, 0, 0]]")
+        print(
+            "默认LoG算子为：[[0, 0, -1, 0, 0], [0, -1, -2, -1, 0], [-1, -2, 16, -2, -1], [0, -1, -2, -1, 0], [0, 0, -1, 0, 0]]")
         choi = int(input("请输入是否使用默认LoG算子，输入1使用默认算子，输入2手动输入："))
 
         if choi == 1:
@@ -122,7 +122,6 @@ def img_segmentation():
             print("请输入LoG算子矩阵。每列用半角逗号隔开。每行之间用enter换行：")
             for i in range(5):
                 LoGMatr[i] = [eval(x) for x in input().split(',')]
-
 
         m1 = np.array(LoGMatr)
 
@@ -140,13 +139,13 @@ def img_segmentation():
 
         cv2.imwrite("results/result.jpg", image1)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 5:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
         img = cv2.imread(img_path)
 
@@ -161,13 +160,13 @@ def img_segmentation():
 
         cv2.imwrite("results/result.jpg", edge_output)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 6:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
         img = cv2.imread(img_path)
 
@@ -192,13 +191,13 @@ def img_segmentation():
 
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 7:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
         img = cv2.imread(img_path)
 
@@ -217,12 +216,9 @@ def img_segmentation():
 
         cv2.imwrite("/results/result.jpg", result_P)
         print("结果请查看根目录下的results文件夹")
-        
+
     else:
         print("输入错误，请重新输入：")
-
-    
-        
 
 
 def histogram():
@@ -235,14 +231,14 @@ def histogram():
         return
 
     if a == 0:
-        
+
         return
     elif a == 1:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
         img = cv2.imread(img_path, 0)
 
@@ -262,9 +258,9 @@ def histogram():
     elif a == 2:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
         img = cv2.imread(img_path)
         color = ["r", "g", "b"]
@@ -285,47 +281,47 @@ def histogram():
         plt.show()
         print("结果请查看根目录下的results文件夹")
 
-        
-
         return
     elif a == 3:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
-        if not(os.path.exists(img_path)):
+        if not (os.path.exists(img_path)):
             print("文件不存在！")
-            
+
             return
         img = cv2.imread(img_path, 0)
         h, w = img.shape[:2]
         out = np.zeros(img.shape, np.uint8)
 
-        amoun = input("请输入分段函数的段数：")
+        try:
+            amoun = int(input("请输入分段函数的段数："))
+        except ValueError as e:
+            print("输入错误，请重新输入：")
+            return
+
         funcIn = [[] for i in range(amoun)]
 
-        print("请输入分段函数。对于每一段在范围[min, max)、形如y=kx+b的函数，依次键入min,max,k和b，用半角逗号隔开。每一段之间换行：")
+        print("请输入分段函数。对于每一段在范围[min, max)、形如y=kx+b的函数，依次键入min,max,k和b，用半角逗号隔开。每一段之间换行.最后一段max输入任意数字：")
         for i in range(amoun):
             funcIn[i] = [eval(x) for x in input().split(',')]
 
         for i in range(h):
             for j in range(w):
                 pix = img[i][j]
-                for p in range(amoun):
+                for p in range(amoun - 1):
                     if (pix >= funcIn[p][0]) and (pix < funcIn[p][1]):
                         out[i][j] = funcIn[p][2] * pix + funcIn[p][3]
+                if pix >= funcIn[amoun - 1][0]:
+                    out[i][j] = funcIn[amoun - 1][2] * pix + funcIn[amoun - 1][3]
 
         out = np.around(out)
         out = out.astype(np.uint8)
         usage.grayHist(out, "results/result.jpg")
         print("结果请查看根目录下的results文件夹")
 
-        
-
         return
     else:
         print("输入错误，请重新输入：")
-
-    
-        
 
 
 def age_transform():
@@ -366,30 +362,29 @@ def age_transform():
     res.close()
     print("结果请查看根目录下的results文件夹")
 
-    
-
     return
+
 
 def basic_func():
     print("可选操作：\n0.返回上一步\n1.逻辑与\n2.逻辑或\n3.逻辑非\n4.加法\n5.减法\n6.乘法\n7.除法\n8.翻转\n9.平移\n10.旋转\n11.放大缩小"
           "\n12.仿射变换\n13.灰度化\n14.二值化")
     a = int(input("请选择要进行的基本操作（输入数字）："))
     if a == 0:
-        
+
         return
     elif a == 1:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         img_path2 = input("第二张图片：")
         img_path2 = "assets/" + img_path2
 
-        if not(os.path.exists(img_path2)):
+        if not (os.path.exists(img_path2)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 0)
         Y = cv2.imread(img_path2, 0)
@@ -397,19 +392,19 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 2:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         img_path2 = input("第二张图片：")
         img_path2 = "assets/" + img_path2
-        if not(os.path.exists(img_path2)):
+        if not (os.path.exists(img_path2)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 0)
         Y = cv2.imread(img_path2, 0)
@@ -417,32 +412,32 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 3:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 0)
         result = ~X
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 4:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         img_path2 = input("第二张图片：")
         img_path2 = "assets/" + img_path2
-        if not(os.path.exists(img_path2)):
+        if not (os.path.exists(img_path2)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
         Y = cv2.imread(img_path2, 1)
@@ -450,19 +445,19 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 5:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         img_path2 = input("第二张图片：")
         img_path2 = "assets/" + img_path2
-        if not(os.path.exists(img_path2)):
+        if not (os.path.exists(img_path2)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
         Y = cv2.imread(img_path2, 1)
@@ -470,19 +465,19 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 6:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         img_path2 = input("第二张图片：")
         img_path2 = "assets/" + img_path2
-        if not(os.path.exists(img_path2)):
+        if not (os.path.exists(img_path2)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
         Y = cv2.imread(img_path2, 1)
@@ -490,19 +485,19 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 7:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         img_path2 = input("第二张图片：")
         img_path2 = "assets/" + img_path2
-        if not(os.path.exists(img_path2)):
+        if not (os.path.exists(img_path2)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
         Y = cv2.imread(img_path2, 1)
@@ -510,13 +505,13 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 8:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
 
@@ -538,13 +533,13 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 9:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
         height, width, channel = X.shape
@@ -555,13 +550,13 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 10:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
 
@@ -575,13 +570,13 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 11:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
 
@@ -611,13 +606,13 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 12:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
         X = cv2.resize(X, (256, 256))
@@ -653,26 +648,26 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 13:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
         result = cv2.cvtColor(X, cv2.COLOR_BGR2GRAY)
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 14:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, 1)
         X = cv2.cvtColor(X, cv2.COLOR_BGR2GRAY)
@@ -680,11 +675,9 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     else:
         print("输入错误，请重新输入：")
-        
-    
 
 
 def morphological():
@@ -697,14 +690,14 @@ def morphological():
         return
 
     if a == 0:
-        
+
         return
     elif a == 1:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, cv2.IMREAD_UNCHANGED)
 
@@ -726,13 +719,13 @@ def morphological():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 2:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, cv2.IMREAD_UNCHANGED)
         try:
@@ -752,13 +745,13 @@ def morphological():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 3:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, cv2.IMREAD_UNCHANGED)
         try:
@@ -778,13 +771,13 @@ def morphological():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     elif a == 4:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
-        if not(os.path.exists(img_path1)):
+        if not (os.path.exists(img_path1)):
             print("文件不存在！")
-            
+
             return
         X = cv2.imread(img_path1, cv2.IMREAD_UNCHANGED)
         try:
@@ -804,9 +797,6 @@ def morphological():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-        
+
     else:
         print("输入错误，请重新输入：")
-        
-
-    
