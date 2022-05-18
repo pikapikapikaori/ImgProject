@@ -13,7 +13,7 @@ def main():
         operation = int(input("请选择要进行的基本操作（输入数字）："))
         if operation == 0:
             break
-        if operation ==1:
+        if operation == 1:
             utils.basic_func()
         if operation == 2:
             utils.histogram()
