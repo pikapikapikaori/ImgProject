@@ -4,6 +4,26 @@ import numpy as np
 from PIL import Image
 from math import *
 
+
+def swap(val1, val2):
+    return val2, val1
+
+
+def order_desc(array):
+    # 列表的长度
+    length = len(array)
+    # 对列表进行选择排序，获得有序的列表
+    for i in range(length):
+        for j in range(i + 1, length):
+            # 选择最大的值
+            if array[j] > array[i]:
+                # 交换位置
+                temp = array[j]
+                array[j] = array[i]
+                array[i] = temp
+    return array
+
+
 def grayHist(img, filename):
     plt.figure(filename, figsize=(16, 8))
     plt.subplot(121)
@@ -22,8 +42,8 @@ def grayHist(img, filename):
     plt.show()
 
 
-def rotate(image,angle):
-    height, width,channels=image.shape
+def rotate(image, angle):
+    height, width, channels = image.shape
 
     heightNew = int(width * fabs(sin(radians(angle))) + height * fabs(cos(radians(angle))))
     widthNew = int(height * fabs(sin(radians(angle))) + width * fabs(cos(radians(angle))))
@@ -32,9 +52,9 @@ def rotate(image,angle):
 
     matRotation[0, 2] += (widthNew - width) / 2
     matRotation[1, 2] += (heightNew - height) / 2
-    imgRotation=None
-    if channels==1:
+    imgRotation = None
+    if channels == 1:
         imgRotation = cv2.warpAffine(image, matRotation, (widthNew, heightNew), borderValue=(255))
-    elif channels==3:
+    elif channels == 3:
         imgRotation = cv2.warpAffine(image, matRotation, (widthNew, heightNew), borderValue=(255, 255, 255))
     return imgRotation

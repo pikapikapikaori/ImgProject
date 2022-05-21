@@ -30,12 +30,12 @@ def main():
             utils.img_segmentation()
         elif operation == 5:
             utils.morphological()
+        elif operation == 6:
+            utils.img_repair()
         elif operation == 7:
             utils.age_transform()
         else:
             print("输入错误，请重新输入：")
-
-        time.sleep(4)
 
 
 
