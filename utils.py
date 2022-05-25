@@ -1317,11 +1317,11 @@ def smooth_or_sharpen():
                 return
 
             if kernel_size <= 0:
-                print("核数大小输入错误，请重新输入：")
+                print("核数输入错误，请重新输入：")
                 return
 
             if (kernel_size % 2) == 0:
-                print("核数大小输入错误，请重新输入：")
+                print("核数输入错误，请重新输入：")
                 return
 
             source = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -1339,11 +1339,11 @@ def smooth_or_sharpen():
                 return
 
             if kernel_size <= 0:
-                print("核数大小输入错误，请重新输入：")
+                print("核数输入错误，请重新输入：")
                 return
 
             if (kernel_size % 2) == 0:
-                print("核数大小输入错误，请重新输入：")
+                print("核数输入错误，请重新输入：")
                 return
 
             result = cv2.medianBlur(img, kernel_size)
