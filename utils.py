@@ -773,12 +773,12 @@ def age_transform():
     --which_epoch latest --display_id 0 --traverse --interp_step 0.05 --image_path_file ../assets/path.txt --make_video --in_the_wild --verbose 
     """)
 
-    #res_vid = open("Lifespan_Age_Transformation_Synthesis/results/" + gen + "/test_latest/traversal/" + result_path)
-    #content = res_vid.read()
-    #res = open("results" + result_path, 'wb')
-    #res.write(content)
-    #res_vid.close()
-    #res.close()
+    # res_vid = open("Lifespan_Age_Transformation_Synthesis/results/" + gen + "/test_latest/traversal/" + result_path)
+    # content = res_vid.read()
+    # res = open("results" + result_path, 'wb')
+    # res.write(content)
+    # res_vid.close()
+    # res.close()
     print("结果请查看根目录下的results文件夹")
 
     return
@@ -1421,7 +1421,7 @@ def smooth_or_sharpen():
         if not (os.path.exists(img_path)):
             print("文件不存在！")
             return
-        img = cv2.imread(img_path,0)
+        img = cv2.imread(img_path, 0)
 
         print("可选频域平滑方法：\n1.理想低通滤波\n2.巴特沃斯低通滤波\n3.指数低通滤波")
         try:
@@ -1430,13 +1430,13 @@ def smooth_or_sharpen():
             print("选择方法输入错误，请重新输入：")
             return
 
-        if fun_choi== 1:
+        if fun_choi == 1:
             try:
                 D0 = int(input("请设置低通滤波的阈值D（0-255）："))
             except ValueError:
                 print("阈值输入错误，请重新输入：")
                 return
-            if D0<0 or D0>255:
+            if D0 < 0 or D0 > 255:
                 print("阈值输入错误，请重新输入：")
                 return
 
@@ -1458,7 +1458,7 @@ def smooth_or_sharpen():
                 print("阈值输入错误，请重新输入：")
                 return
 
-            butterworth_filter = usage.butterworth_low_filter(img, D0,rank)
+            butterworth_filter = usage.butterworth_low_filter(img, D0, rank)
             result = usage.filter_use(img, butterworth_filter)
 
             cv2.imshow("result", result)
@@ -1476,7 +1476,7 @@ def smooth_or_sharpen():
                 print("阈值输入错误，请重新输入：")
                 return
 
-            exp_filter = usage.exp_low_filter(img, D0,rank)
+            exp_filter = usage.exp_low_filter(img, D0, rank)
             result = usage.filter_use(img, exp_filter)
 
             cv2.imshow("result", result)
@@ -1489,7 +1489,7 @@ def smooth_or_sharpen():
         if not (os.path.exists(img_path)):
             print("文件不存在！")
             return
-        img = cv2.imread(img_path,0)
+        img = cv2.imread(img_path, 0)
 
         print("可选频域锐化方法：\n1.理想高通滤波\n2.巴特沃斯高通滤波\n3.指数高通滤波")
         try:
@@ -1498,13 +1498,13 @@ def smooth_or_sharpen():
             print("选择方法输入错误，请重新输入：")
             return
 
-        if fun_choi== 1:
+        if fun_choi == 1:
             try:
                 D0 = int(input("请设置高通滤波的阈值D（0-255）："))
             except ValueError:
                 print("阈值输入错误，请重新输入：")
                 return
-            if D0<0 or D0>255:
+            if D0 < 0 or D0 > 255:
                 print("阈值输入错误，请重新输入：")
                 return
 
@@ -1526,7 +1526,7 @@ def smooth_or_sharpen():
                 print("阈值输入错误，请重新输入：")
                 return
 
-            butterworth_filter = usage.butterworth_high_filter(img, D0,rank)
+            butterworth_filter = usage.butterworth_high_filter(img, D0, rank)
             result = usage.filter_use2(img, butterworth_filter)
 
             cv2.imshow("result", result)
@@ -1544,7 +1544,7 @@ def smooth_or_sharpen():
                 print("阈值输入错误，请重新输入：")
                 return
 
-            exp_filter = usage.exp_high_filter(img, D0,rank)
+            exp_filter = usage.exp_high_filter(img, D0, rank)
             result = usage.filter_use2(img, exp_filter)
 
             cv2.imshow("result", result)

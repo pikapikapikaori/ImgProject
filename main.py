@@ -1,4 +1,4 @@
-import  time
+import time
 
 import cv2
 import numpy as np
@@ -38,7 +38,6 @@ def main():
             utils.age_transform()
         else:
             print("输入错误，请重新输入：")
-
 
 
 if __name__ == "__main__":
