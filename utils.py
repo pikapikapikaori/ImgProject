@@ -341,6 +341,10 @@ def img_segmentation():
             print("权值输入错误，请重新输入：")
             return
 
+        if (val1 < 0) or (val2 < 0):
+            print("权值输入错误，请重新输入：")
+            return
+
         try:
             exp = float(input("请输入偏置值（推荐设为0）："))
         except ValueError:
@@ -376,11 +380,15 @@ def img_segmentation():
             val1 = float(input("请输入处理后第一张图的权值（推荐设为0.5）："))
             val2 = float(input("请输入处理后第二张图的权值（推荐设为0.5）："))
         except ValueError:
-            print("权值输入错误，请重新输入（推荐设为0）：")
+            print("权值输入错误，请重新输入：")
+            return
+
+        if (val1 < 0) or (val2 < 0):
+            print("权值输入错误，请重新输入：")
             return
 
         try:
-            exp = float(input("请输入偏置值："))
+            exp = float(input("请输入偏置值（推荐设为0）："))
         except ValueError:
             print("偏置值输入错误，请重新输入：")
             return
@@ -390,11 +398,8 @@ def img_segmentation():
         kernelx = cv2.Sobel(grayImage, cv2.CV_16S, 1, 0)
         kernely = cv2.Sobel(grayImage, cv2.CV_16S, 0, 1)
 
-        cal_x = cv2.filter2D(grayImage, cv2.CV_16S, kernelx)
-        cal_y = cv2.filter2D(grayImage, cv2.CV_16S, kernely)
-
-        absX = cv2.convertScaleAbs(cal_x)
-        absY = cv2.convertScaleAbs(cal_y)
+        absX = cv2.convertScaleAbs(kernelx)
+        absY = cv2.convertScaleAbs(kernely)
 
         Sobel = cv2.addWeighted(absX, val1, absY, val2, exp)
 
