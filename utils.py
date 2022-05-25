@@ -37,7 +37,7 @@ def img_repair():
         out = image + noise
         out = np.clip(out, 0.0, 1.0)
         out = np.uint8(out * 255)
-        cv2.imwrite("results/result.jpg", out)
+        cv2.imwrite("results/repair_gauss_noise_result.jpg", out)
         print("结果请查看根目录下的results文件夹")
 
         return
@@ -92,7 +92,7 @@ def img_repair():
                     # 不添加噪声
                     out[i][j] = img[i][j]
 
-        cv2.imwrite("results/result.jpg", out)
+        cv2.imwrite("results/repair_sault_pepper_noise_result.jpg", out)
         print("结果请查看根目录下的results文件夹")
 
         return
@@ -193,7 +193,7 @@ def img_repair():
                     print("选择滤波器输入错误，请重新输入：")
                     return
 
-        cv2.imwrite("results/result.jpg", out)
+        cv2.imwrite("results/repair_average_filter_result.jpg", out)
         print("结果请查看根目录下的results文件夹")
 
         return
@@ -237,7 +237,7 @@ def img_repair():
                     print("选择操作输入错误，请重新输入：")
                     return
 
-        cv2.imwrite("results/result.jpg", out)
+        cv2.imwrite("results/repair_statistical_filter_result.jpg", out)
         print("结果请查看根目录下的results文件夹")
 
         return
@@ -300,7 +300,7 @@ def img_repair():
                         print("选择颜色输入错误，请重新输入：")
                         return
 
-        cv2.imwrite("results/result.jpg", out)
+        cv2.imwrite("results/repair_spectrum_filter_result.jpg", out)
         print("结果请查看根目录下的results文件夹")
 
         return
@@ -364,7 +364,7 @@ def img_segmentation():
 
         Roberts = cv2.addWeighted(absX, val1, absY, val2, exp)
 
-        cv2.imwrite("results/result.jpg", Roberts)
+        cv2.imwrite("results/segment_roberts_result.jpg", Roberts)
         print("结果请查看根目录下的results文件夹")
     # Sobel
     elif seg_choi == 2:
@@ -403,7 +403,7 @@ def img_segmentation():
 
         Sobel = cv2.addWeighted(absX, val1, absY, val2, exp)
 
-        cv2.imwrite("results/result.jpg", Sobel)
+        cv2.imwrite("results/segment_sobel_result.jpg", Sobel)
         print("结果请查看根目录下的results文件夹")
     # Laplacian
     elif seg_choi == 3:
@@ -457,7 +457,7 @@ def img_segmentation():
 
         Laplacian = cv2.convertScaleAbs(dst)
 
-        cv2.imwrite("results/result.jpg", Laplacian)
+        cv2.imwrite("results/segment_laplacian_result.jpg", Laplacian)
         print("结果请查看根目录下的results文件夹")
     # LoG
     elif seg_choi == 4:
@@ -514,7 +514,7 @@ def img_segmentation():
 
         image1 = cv2.convertScaleAbs(image1)
 
-        cv2.imwrite("results/result.jpg", image1)
+        cv2.imwrite("results/segment_log_result.jpg", image1)
         print("结果请查看根目录下的results文件夹")
     # Canny
     elif seg_choi == 5:
@@ -555,7 +555,7 @@ def img_segmentation():
 
         edge_output = cv2.Canny(gradx, grady, 50, 150)
 
-        cv2.imwrite("results/result.jpg", edge_output)
+        cv2.imwrite("results/segment_canny_result.jpg", edge_output)
         print("结果请查看根目录下的results文件夹")
     # HoughLines
     elif seg_choi == 6:
@@ -586,7 +586,7 @@ def img_segmentation():
                     pt2 = (result.shape[1], int((rho - result.shape[1] * np.cos(theta)) / np.sin(theta)))
                     cv2.line(result, pt1, pt2, (0, 0, 255), 1)
 
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/segment_houghline_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # HoughLinesP
     elif seg_choi == 7:
@@ -611,7 +611,7 @@ def img_segmentation():
             for x1, y1, x2, y2 in i_P:
                 cv2.line(result_P, (x1, y1), (x2, y2), (0, 255, 0), 3)
 
-        cv2.imwrite("/results/result.jpg", result_P)
+        cv2.imwrite("results/segment_houghlinep_result.jpg", result_P)
         print("结果请查看根目录下的results文件夹")
 
     else:
@@ -648,7 +648,7 @@ def histogram():
         print('最小像素值：', min(hist))
         plt.plot(hist)
         plt.xlim([0, 255])
-        plt.savefig("results/result.jpg")
+        plt.savefig("results/hist_gray_statistics_result.jpg")
         plt.show()
         print("结果请查看根目录下的results文件夹")
 
@@ -676,7 +676,7 @@ def histogram():
             print('最小像素值：', min(hist))
             plt.plot(hist, color=c)
             plt.xlim([0, 255])
-        plt.savefig("results/result.jpg")
+        plt.savefig("results/hist_bgr_statistics_result.jpg")
         plt.show()
         print("结果请查看根目录下的results文件夹")
 
@@ -735,7 +735,7 @@ def histogram():
 
         out = np.around(out)
         out = out.astype(np.uint8)
-        usage.grayHist(out, "results/result.jpg")
+        usage.grayHist(out, "results/hist_strengthen_result.jpg")
         print("结果请查看根目录下的results文件夹")
 
         return
@@ -815,7 +815,7 @@ def basic_func():
         img2 = cv2.imread(img_path2, 0)
         result = img1 & img2
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_and_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 逻辑或
     elif basic_choi == 2:
@@ -835,7 +835,7 @@ def basic_func():
         img2 = cv2.imread(img_path2, 0)
         result = img1 | img2
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_or_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 逻辑非
     elif basic_choi == 3:
@@ -848,7 +848,7 @@ def basic_func():
         img = cv2.imread(img_path, 0)
         result = ~img
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_not_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 加法
     elif basic_choi == 4:
@@ -868,7 +868,7 @@ def basic_func():
         img2 = cv2.imread(img_path2, 1)
         result = cv2.add(img1, img2)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_add_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 减法
     elif basic_choi == 5:
@@ -888,7 +888,7 @@ def basic_func():
         img2 = cv2.imread(img_path2, 1)
         result = cv2.subtract(img1, img2)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_minus_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 乘法
     elif basic_choi == 6:
@@ -908,7 +908,7 @@ def basic_func():
         img2 = cv2.imread(img_path2, 1)
         result = cv2.multiply(img1, img2)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_mult_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 除法
     elif basic_choi == 7:
@@ -928,7 +928,7 @@ def basic_func():
         img2 = cv2.imread(img_path2, 1)
         result = cv2.divide(img1, img2)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_divide_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 翻转
     elif basic_choi == 8:
@@ -958,7 +958,7 @@ def basic_func():
             print("选择方向输入错误，不执行翻转操作")
             result = img
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_reverse_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 平移
     elif basic_choi == 9:
@@ -975,7 +975,7 @@ def basic_func():
         pix_M = np.float32([[1, 0, pix_x], [0, 1, pix_y]])
         result = cv2.warpAffine(img, pix_M, (img_width, img_height))
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_move_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 旋转
     elif basic_choi == 10:
@@ -995,7 +995,7 @@ def basic_func():
 
         result = usage.rotate(img, ang)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_rotate_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 放缩
     elif basic_choi == 11:
@@ -1031,7 +1031,7 @@ def basic_func():
 
         result = cv2.resize(img, (0, 0), fx=siz_x, fy=siz_y, interpolation=cv2.INTER_LINEAR)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_resize_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 仿射变换
     elif basic_choi == 12:
@@ -1078,7 +1078,7 @@ def basic_func():
         pix_M = cv2.getAffineTransform(post1, post2)
         result = cv2.warpAffine(img, pix_M, (img_rows, img_cols))
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_change_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 灰度化
     elif basic_choi == 13:
@@ -1091,7 +1091,7 @@ def basic_func():
         img = cv2.imread(img_path, 1)
         result = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_gray_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 二值化
     elif basic_choi == 14:
@@ -1105,7 +1105,7 @@ def basic_func():
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         ret, result = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/basic_tf_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
 
     else:
@@ -1160,7 +1160,7 @@ def morphological():
             kernel = cv2.cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_size, kernel_size))
         result = cv2.erode(img, kernel)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/morpho_erode_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 膨胀
     elif morp_choi == 2:
@@ -1198,7 +1198,7 @@ def morphological():
             kernel = cv2.cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_size, kernel_size))
         result = cv2.dilate(img, kernel)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/morpho_dilate_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 开运算
     elif morp_choi == 3:
@@ -1236,7 +1236,7 @@ def morphological():
             kernel = cv2.cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_size, kernel_size))
         result = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/morpho_open_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
     # 闭运算
     elif morp_choi == 4:
@@ -1274,7 +1274,7 @@ def morphological():
             kernel = cv2.cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_size, kernel_size))
         result = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
         cv2.imshow("result", result)
-        cv2.imwrite("results/result.jpg", result)
+        cv2.imwrite("results/morpho_close_result.jpg", result)
         print("结果请查看根目录下的results文件夹")
 
     else:
@@ -1327,7 +1327,7 @@ def smooth_or_sharpen():
             result = cv2.blur(img, (kernel_size, kernel_size))
 
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_neighb_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
 
         elif fun_choi == 2:
@@ -1348,7 +1348,7 @@ def smooth_or_sharpen():
             result = cv2.medianBlur(img, kernel_size)
 
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_median_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
     # 空域锐化
     elif sos_choi == 2:
@@ -1376,7 +1376,7 @@ def smooth_or_sharpen():
                     result[i][j] = np.abs(img[i][j].astype(int) - img[i + 1][j + 1].astype(int)) + np.abs(
                         img[i + 1][j].astype(int) - img[i][j + 1].astype(int))
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_roberts_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
 
         elif fun_choi == 2:
@@ -1388,7 +1388,7 @@ def smooth_or_sharpen():
                     result[i][j] = 4 * img[i][j].astype(int) - img[i + 1][j].astype(int) - img[i - 1][j].astype(int) - \
                                    img[i][j + 1].astype(int) - img[i][j - 1].astype(int)
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_laplacian_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
 
         elif fun_choi == 3:
@@ -1400,7 +1400,7 @@ def smooth_or_sharpen():
             absy = cv2.convertScaleAbs(imgy)
             result = cv2.addWeighted(absx, 0.5, absy, 0.5, 0)
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_sobel_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
 
         elif fun_choi == 4:
@@ -1412,9 +1412,9 @@ def smooth_or_sharpen():
             absy = cv2.convertScaleAbs(imgy)
             result = cv2.addWeighted(absx, 0.5, absy, 0.5, 0)
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_prewitt_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
-
+    # 频域平滑
     elif sos_choi == 3:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -1426,14 +1426,14 @@ def smooth_or_sharpen():
         print("可选频域平滑方法：\n1.理想低通滤波\n2.巴特沃斯低通滤波\n3.指数低通滤波")
         try:
             fun_choi = int(input("请选择要使用的频域平滑方法："))
-        except ValueError as e:
+        except ValueError:
             print("选择方法输入错误，请重新输入：")
             return
 
         if fun_choi== 1:
             try:
                 D0 = int(input("请设置低通滤波的阈值D（0-255）："))
-            except ValueError as e:
+            except ValueError:
                 print("阈值输入错误，请重新输入：")
                 return
             if D0<0 or D0>255:
@@ -1451,7 +1451,7 @@ def smooth_or_sharpen():
             try:
                 D0 = int(input("请设置巴特沃斯低通滤波的阈值D（0-255）："))
                 rank = int(input("请设置阶数rank："))
-            except ValueError as e:
+            except ValueError:
                 print("输入错误，请重新输入：")
                 return
             if D0 < 0 or D0 > 255:
@@ -1469,7 +1469,7 @@ def smooth_or_sharpen():
             try:
                 D0 = int(input("请设置指数低通滤波的阈值D（0-255）："))
                 rank = int(input("请设置阶数rank："))
-            except ValueError as e:
+            except ValueError:
                 print("输入错误，请重新输入：")
                 return
             if D0 < 0 or D0 > 255:
@@ -1482,7 +1482,7 @@ def smooth_or_sharpen():
             cv2.imshow("result", result)
             cv2.imwrite("results/result.jpg", result)
             print("结果请查看根目录下的results文件夹")
-
+    # 频域锐化
     elif sos_choi == 4:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -1494,14 +1494,14 @@ def smooth_or_sharpen():
         print("可选频域锐化方法：\n1.理想高通滤波\n2.巴特沃斯高通滤波\n3.指数高通滤波")
         try:
             fun_choi = int(input("请选择要使用的频域锐化方法："))
-        except ValueError as e:
+        except ValueError:
             print("选择方法输入错误，请重新输入：")
             return
 
         if fun_choi== 1:
             try:
                 D0 = int(input("请设置高通滤波的阈值D（0-255）："))
-            except ValueError as e:
+            except ValueError:
                 print("阈值输入错误，请重新输入：")
                 return
             if D0<0 or D0>255:
@@ -1519,7 +1519,7 @@ def smooth_or_sharpen():
             try:
                 D0 = int(input("请设置巴特沃斯高通滤波的阈值D（0-255）："))
                 rank = int(input("请设置阶数rank："))
-            except ValueError as e:
+            except ValueError:
                 print("输入错误，请重新输入：")
                 return
             if D0 < 0 or D0 > 255:
@@ -1537,7 +1537,7 @@ def smooth_or_sharpen():
             try:
                 D0 = int(input("请设置指数高通滤波的阈值D（0-255）："))
                 rank = int(input("请设置阶数rank："))
-            except ValueError as e:
+            except ValueError:
                 print("输入错误，请重新输入：")
                 return
             if D0 < 0 or D0 > 255:
