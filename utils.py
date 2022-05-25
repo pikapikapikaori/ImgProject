@@ -1324,8 +1324,7 @@ def smooth_or_sharpen():
                 print("核数输入错误，请重新输入：")
                 return
 
-            source = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            result = cv2.blur(source, (kernel_size, kernel_size))
+            result = cv2.blur(img, (kernel_size, kernel_size))
 
             cv2.imshow("result", result)
             cv2.imwrite("results/result.jpg", result)
