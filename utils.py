@@ -1421,7 +1421,7 @@ def smooth_or_sharpen():
         if not (os.path.exists(img_path)):
             print("文件不存在！")
             return
-        img = cv2.imread(img_path)
+        img = cv2.imread(img_path,0)
 
         print("可选频域平滑方法：\n1.理想低通滤波\n2.巴特沃斯低通滤波\n3.指数低通滤波")
         try:
@@ -1489,7 +1489,7 @@ def smooth_or_sharpen():
         if not (os.path.exists(img_path)):
             print("文件不存在！")
             return
-        img = cv2.imread(img_path)
+        img = cv2.imread(img_path,0)
 
         print("可选频域锐化方法：\n1.理想高通滤波\n2.巴特沃斯高通滤波\n3.指数高通滤波")
         try:
