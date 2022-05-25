@@ -347,7 +347,6 @@ def img_segmentation():
             print("偏置值输入错误，请重新输入：")
             return
 
-
         grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         kernelx = np.array([[-1, 0], [0, 1]], dtype=int)
