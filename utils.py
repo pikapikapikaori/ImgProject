@@ -1,11 +1,9 @@
 import os
 import sys
-import time
 
 import matplotlib.pyplot as plt
 import cv2
 import numpy as np
-from PIL import Image
 
 import usage
 
@@ -15,7 +13,7 @@ def img_repair():
 
     try:
         repa_choi = int(input("请选择要进行的基本操作："))
-    except ValueError as e:
+    except ValueError:
         print("选择基本操作输入错误，请重新输入：")
         return
 
@@ -57,7 +55,7 @@ def img_repair():
         try:
             ran_x1, ran_y1 = input("请输入胡椒噪声范围，无穷大则输入MAX（格式为\"x y\"）：").split()
             ran_x2, ran_y2 = input("请输入食盐噪声范围，无穷大则输入MAX（格式为\"x y\"）：").split()
-        except ValueError as e:
+        except ValueError:
             print("输入参数个数不足，请重新输入：")
             return
 
@@ -72,7 +70,7 @@ def img_repair():
             ran_y1 = int(ran_y1)
             ran_x2 = int(ran_x2)
             ran_y2 = int(ran_y2)
-        except ValueError as e:
+        except ValueError:
             print("范围值输入错误，请重新输入：")
             return
 
@@ -113,7 +111,7 @@ def img_repair():
 
         try:
             filter_choi = int(input("请选择要使用的滤波器："))
-        except ValueError as e:
+        except ValueError:
             print("选择操作输入错误，请重新输入：")
             return
 
@@ -122,20 +120,20 @@ def img_repair():
         if filter_choi == 4:
             try:
                 antiharm_Q = int(input("请输入滤波和调整的阶数："))
-            except ValueError as e:
+            except ValueError:
                 print("阶数输入错误，请重新输入：")
                 return
 
         try:
             filter_size_p, filter_size_q = input("请输入滤波器大小p*q（奇数，格式为\"p q\"）：").split()
-        except ValueError as e:
+        except ValueError:
             print("输入参数个数不足，请重新输入：")
             return
 
         try:
             filter_size_p = int(filter_size_p)
             filter_size_q = int(filter_size_q)
-        except ValueError as e:
+        except ValueError:
             print("滤波器大小输入错误，请重新输入：")
             return
 
@@ -214,7 +212,7 @@ def img_repair():
 
         try:
             filter_choi = int(input("请选择要使用的滤波器："))
-        except ValueError as e:
+        except ValueError:
             print("选择操作输入错误，请重新输入：")
             return
 
@@ -256,7 +254,7 @@ def img_repair():
 
         try:
             min, max = input("请输入允许通过的像素点的像素值范围，最大值请输入MAX（格式为\"min max\"）：").split()
-        except ValueError as e:
+        except ValueError:
             print("输入参数个数不足，请重新输入：")
             return
 
@@ -268,7 +266,7 @@ def img_repair():
 
             min = int(min)
             max = int(max)
-        except ValueError as e:
+        except ValueError:
             print("范围输入错误，请重新输入：")
             return
 
@@ -283,7 +281,7 @@ def img_repair():
 
         try:
             color_choi = int(input("请选择要设置的颜色："))
-        except ValueError as e:
+        except ValueError:
             print("选择颜色输入错误，请重新输入：")
             return
 
@@ -317,7 +315,7 @@ def img_segmentation():
 
     try:
         seg_choi = int(input("请选择要进行的基本操作："))
-    except ValueError as e:
+    except ValueError:
         print("选择基本操作输入错误，请重新输入：")
         return
 
@@ -339,13 +337,13 @@ def img_segmentation():
         try:
             val1 = float(input("请输入处理后第一张图的权值（推荐设为0.5）："))
             val2 = float(input("请输入处理后第二张图的权值（推荐设为0.5）："))
-        except ValueError as e:
+        except ValueError:
             print("权值输入错误，请重新输入：")
             return
 
         try:
             exp = float(input("请输入偏置值（推荐设为0）："))
-        except ValueError as e:
+        except ValueError:
             print("偏置值输入错误，请重新输入：")
             return
 
@@ -378,13 +376,13 @@ def img_segmentation():
         try:
             val1 = float(input("请输入处理后第一张图的权值（推荐设为0.5）："))
             val2 = float(input("请输入处理后第二张图的权值（推荐设为0.5）："))
-        except ValueError as e:
+        except ValueError:
             print("权值输入错误，请重新输入（推荐设为0）：")
             return
 
         try:
             exp = float(input("请输入偏置值："))
-        except ValueError as e:
+        except ValueError:
             print("偏置值输入错误，请重新输入：")
             return
 
@@ -415,7 +413,7 @@ def img_segmentation():
 
         try:
             kernel_size = int(input("请输入高斯滤波的卷积核大小k（奇数，大小为k*k）（推荐设为5）："))
-        except ValueError as e:
+        except ValueError:
             print("卷积核大小输入错误，请重新输入：")
             return
 
@@ -429,13 +427,13 @@ def img_segmentation():
 
         try:
             exp = float(input("请输入偏差值（推荐设为0）："))
-        except ValueError as e:
+        except ValueError:
             print("偏差值输入错误，请重新输入：")
             return
 
         try:
             k_size = int(input("请输入Laplacian算子的核大小（奇数，推荐设为3）："))
-        except ValueError as e:
+        except ValueError:
             print("核大小输入错误，请重新输入：")
             return
 
@@ -483,7 +481,7 @@ def img_segmentation():
 
         try:
             cal_choi = int(input("请选择要选择的LoG算子："))
-        except ValueError as e:
+        except ValueError:
             print("选择算子输入错误，请重新输入：")
             return
 
@@ -526,7 +524,7 @@ def img_segmentation():
 
         try:
             kernel_size = int(input("请输入高斯滤波的卷积核大小k（奇数，大小为k*k）（推荐设为5）："))
-        except ValueError as e:
+        except ValueError:
             print("卷积核大小输入错误，请重新输入：")
             return
 
@@ -540,7 +538,7 @@ def img_segmentation():
 
         try:
             exp = float(input("请输入偏差值（推荐设为0）："))
-        except ValueError as e:
+        except ValueError:
             print("偏差值输入错误，请重新输入：")
             return
 
@@ -621,7 +619,7 @@ def histogram():
 
     try:
         hist_choi = int(input("请选择要进行的基本操作："))
-    except ValueError as e:
+    except ValueError:
         print("输入错误，请重新输入：")
         return
 
@@ -693,7 +691,7 @@ def histogram():
 
         try:
             amoun = int(input("请输入分段函数的段数："))
-        except ValueError as e:
+        except ValueError:
             print("段数输入错误，请重新输入：")
             return
 
@@ -788,7 +786,7 @@ def basic_func():
 
     try:
         basic_choi = int(input("请选择要进行的基本操作："))
-    except ValueError as e:
+    except ValueError:
         print("选择基本操作输入错误，请重新输入：")
         return
 
@@ -942,7 +940,7 @@ def basic_func():
 
         try:
             fli_choi = int(input("请选择翻转方向："))
-        except ValueError as e:
+        except ValueError:
             print("选择方向输入错误，请重新输入：")
             return
 
@@ -987,7 +985,7 @@ def basic_func():
 
         try:
             ang = int(input("请输入旋转角度（默认顺时针，缩小以适应变换）："))
-        except ValueError as e:
+        except ValueError:
             print("选择角度输入错误，请重新输入：")
             return
 
@@ -1007,7 +1005,7 @@ def basic_func():
 
         try:
             siz_x = float(input("请输入x方向放大倍数："))
-        except ValueError as e:
+        except ValueError:
             print("放大倍数输入错误，请重新输入：")
             return
 
@@ -1018,7 +1016,7 @@ def basic_func():
 
         try:
             siz_y = float(input("请输入y方向放大倍数："))
-        except ValueError as e:
+        except ValueError:
             print("放大倍数输入错误，请重新输入：")
             return
 
@@ -1050,7 +1048,7 @@ def basic_func():
             pos_x2_, pos_y2_ = input("请输入b点变换后坐标（格式为\"x y\"）：").split()
             pos_x3, pos_y3 = input("请输入c点变换前坐标（格式为\"x y\"）：").split()
             pos_x3_, pos_y3_ = input("请输入c点变换后坐标（格式为\"x y\"）：").split()
-        except ValueError as e:
+        except ValueError:
             print("输入参数个数不足，请重新输入：")
             return
 
@@ -1067,7 +1065,7 @@ def basic_func():
             pos_y3 = int(pos_y3)
             pos_x3_ = int(pos_x3_)
             pos_y3_ = int(pos_y3_)
-        except ValueError as e:
+        except ValueError:
             print("坐标输入错误，请重新输入：")
             return
 
@@ -1115,7 +1113,7 @@ def morphological():
 
     try:
         morp_choi = int(input("请选择要进行的基本操作："))
-    except ValueError as e:
+    except ValueError:
         print("选择基本操作输入错误，请重新输入：")
         return
 
@@ -1137,7 +1135,7 @@ def morphological():
         try:
             kernel_type = int(input("请输入要使用的结构元类型："))
             kernel_size = int(input("请输入要使用的结构元大小k（奇数，大小为k*k）："))
-        except ValueError as e:
+        except ValueError:
             print("结构元类型或结构元大小输入错误，请重新输入：")
             return
 
@@ -1175,7 +1173,7 @@ def morphological():
         try:
             kernel_type = int(input("请输入要使用的结构元类型："))
             kernel_size = int(input("请输入要使用的结构元大小k（奇数，大小为k*k）："))
-        except ValueError as e:
+        except ValueError:
             print("结构元类型或结构元大小输入错误，请重新输入：")
             return
 
@@ -1213,7 +1211,7 @@ def morphological():
         try:
             kernel_type = int(input("请输入要使用的结构元类型："))
             kernel_size = int(input("请输入要使用的结构元大小k（奇数，大小为k*k）："))
-        except ValueError as e:
+        except ValueError:
             print("结构元类型或结构元大小输入错误，请重新输入：")
             return
 
@@ -1251,7 +1249,7 @@ def morphological():
         try:
             kernel_type = int(input("请输入要使用的结构元类型："))
             kernel_size = int(input("请输入要使用的结构元大小k（奇数，大小为k*k）："))
-        except ValueError as e:
+        except ValueError:
             print("结构元类型或结构元大小输入错误，请重新输入：")
             return
 
