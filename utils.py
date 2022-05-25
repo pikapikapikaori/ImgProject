@@ -1444,7 +1444,7 @@ def smooth_or_sharpen():
             result = usage.filter_use(img, ideal_filter)
 
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_ideal_filter_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
 
         if fun_choi == 2:
@@ -1452,7 +1452,7 @@ def smooth_or_sharpen():
                 D0 = int(input("请设置巴特沃斯低通滤波的阈值D（0-255）："))
                 rank = int(input("请设置阶数rank："))
             except ValueError:
-                print("输入错误，请重新输入：")
+                print("阈值或阶数输入错误，请重新输入：")
                 return
             if D0 < 0 or D0 > 255:
                 print("阈值输入错误，请重新输入：")
@@ -1462,7 +1462,7 @@ def smooth_or_sharpen():
             result = usage.filter_use(img, butterworth_filter)
 
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_barte_filter_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
 
         if fun_choi == 3:
@@ -1480,7 +1480,7 @@ def smooth_or_sharpen():
             result = usage.filter_use(img, exp_filter)
 
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_exp_filter_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
     # 频域锐化
     elif sos_choi == 4:
@@ -1512,7 +1512,7 @@ def smooth_or_sharpen():
             result = usage.filter_use2(img, ideal_filter)
 
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_ideal_high_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
 
         if fun_choi == 2:
@@ -1530,7 +1530,7 @@ def smooth_or_sharpen():
             result = usage.filter_use2(img, butterworth_filter)
 
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_barte_high_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
 
         if fun_choi == 3:
@@ -1548,7 +1548,7 @@ def smooth_or_sharpen():
             result = usage.filter_use2(img, exp_filter)
 
             cv2.imshow("result", result)
-            cv2.imwrite("results/result.jpg", result)
+            cv2.imwrite("results/ss_exp_high_result.jpg", result)
             print("结果请查看根目录下的results文件夹")
 
     else:
