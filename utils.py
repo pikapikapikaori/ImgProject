@@ -1148,7 +1148,7 @@ def morphological():
             return
 
         if (kernel_size % 2) == 0:
-            print("卷积核大小输入错误，请重新输入：")
+            print("结构元大小输入错误，请重新输入：")
             return
 
         if kernel_type == 1:
@@ -1186,7 +1186,7 @@ def morphological():
             return
 
         if (kernel_size % 2) == 0:
-            print("卷积核大小输入错误，请重新输入：")
+            print("结构元大小输入错误，请重新输入：")
             return
 
         if kernel_type == 1:
@@ -1224,7 +1224,7 @@ def morphological():
             return
 
         if (kernel_size % 2) == 0:
-            print("卷积核大小输入错误，请重新输入：")
+            print("结构元大小输入错误，请重新输入：")
             return
 
         if kernel_type == 1:
@@ -1262,7 +1262,7 @@ def morphological():
             return
 
         if (kernel_size % 2) == 0:
-            print("卷积核大小输入错误，请重新输入：")
+            print("结构元大小输入错误，请重新输入：")
             return
 
         if kernel_type == 1:
