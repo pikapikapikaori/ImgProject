@@ -10,3 +10,17 @@
 - [x] 封装年龄变换项目（考虑使用`os.system()`）
 - [ ] 功能文档
 - [ ] 项目报告
+
+## 项目说明
+
+功能文档可以在[这里](./functions.md)参考`functions.md`文件。
+
+关于对年龄变换论文的技术理解报告可以在[这里](./report/report.pdf)参考`report`目录下的`report.pdf`文件
+
+## 项目环境
+
+- Python: 3.8
+- Pillow: 9.1.1
+- Matplotlib: 3.5.2
+- Bumpy: 1.22.3
+- Opencv-python: 4.5.5.64
