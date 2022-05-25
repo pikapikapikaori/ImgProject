@@ -28,6 +28,8 @@ def main():
             utils.histogram()
         elif operation == 3:
             utils.img_segmentation()
+        elif operation == 4:
+            utils.smooth_or_sharpen()
         elif operation == 5:
             utils.morphological()
         elif operation == 6:

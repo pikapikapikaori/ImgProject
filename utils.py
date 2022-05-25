@@ -1286,13 +1286,13 @@ def smooth_or_sharpen():
 
     try:
         sos_choi = int(input("请选择要进行的基本操作："))
-    except ValueError as e:
+    except ValueError:
         print("选择基本操作输入错误，请重新输入：")
         return
 
     if sos_choi == 0:
         return
-
+    # 空域平滑
     elif sos_choi == 1:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -1305,14 +1305,14 @@ def smooth_or_sharpen():
         print("可选空域平滑方法：\n1.邻域平均法\n2.中值滤波法")
         try:
             fun_choi = int(input("请选择要使用的空域平滑方法："))
-        except ValueError as e:
+        except ValueError:
             print("选择方法输入错误，请重新输入：")
             return
 
         if fun_choi == 1:
             try:
-                kernel_size = int(input("请输入计算单元核数："))
-            except ValueError as e:
+                kernel_size = int(input("请输入计算单元核数k（奇数，大小为k*k）："))
+            except ValueError:
                 print("核数输入错误，请重新输入：")
                 return
 
@@ -1333,8 +1333,8 @@ def smooth_or_sharpen():
 
         elif fun_choi == 2:
             try:
-                kernel_size = int(input("请输入计算单元核数："))
-            except ValueError as e:
+                kernel_size = int(input("请输入计算单元核数k（奇数，大小为k*k）："))
+            except ValueError:
                 print("核数输入错误，请重新输入：")
                 return
 
@@ -1346,12 +1346,12 @@ def smooth_or_sharpen():
                 print("卷积核大小输入错误，请重新输入：")
                 return
 
-            result = cv2.medianblur(img, kernel_size)
+            result = cv2.medianBlur(img, kernel_size)
 
             cv2.imshow("result", result)
             cv2.imwrite("results/result.jpg", result)
             print("结果请查看根目录下的results文件夹")
-
+    # 空域锐化
     elif sos_choi == 2:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -1361,10 +1361,10 @@ def smooth_or_sharpen():
             return
         img = cv2.imread(img_path)
 
-        print("可选空域平滑方法：\n1.Robert梯度算子\n2.Laplacian梯度算子\n3.Sobel算子")
+        print("可选空域锐化方法：\n1.Robert梯度算子\n2.Laplacian梯度算子\n3.Sobel算子\n4.Prewitt算子")
         try:
-            fun_choi = int(input("请选择要使用的空域平滑方法："))
-        except ValueError as e:
+            fun_choi = int(input("请选择要使用的空域锐化方法："))
+        except ValueError:
             print("选择方法输入错误，请重新输入：")
             return
 
@@ -1399,7 +1399,7 @@ def smooth_or_sharpen():
             imgy = cv2.filter2D(img, -1, kerny, borderType=cv2.BORDER_REFLECT)
             absx = cv2.convertScaleAbs(imgx)
             absy = cv2.convertScaleAbs(imgy)
-            result = cv2.addWeighted((absx, 0.5, absy, 0.5, 0))
+            result = cv2.addWeighted(absx, 0.5, absy, 0.5, 0)
             cv2.imshow("result", result)
             cv2.imwrite("results/result.jpg", result)
             print("结果请查看根目录下的results文件夹")
@@ -1411,7 +1411,7 @@ def smooth_or_sharpen():
             imgy = cv2.filter2D(img, cv2.CV_16S, kerny)
             absx = cv2.convertScaleAbs(imgx)
             absy = cv2.convertScaleAbs(imgy)
-            result = cv2.addWeighted((absx, 0.5, absy, 0.5, 0))
+            result = cv2.addWeighted(absx, 0.5, absy, 0.5, 0)
             cv2.imshow("result", result)
             cv2.imwrite("results/result.jpg", result)
             print("结果请查看根目录下的results文件夹")
