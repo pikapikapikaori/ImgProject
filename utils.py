@@ -754,7 +754,7 @@ def age_transform():
         result_path += img_path[i]
 
     result_path += ".mp4"
-    img_path = "assets/" + img_path
+    img_path = "../assets/" + img_path
 
     path_file = open("assets/path.txt", 'w')
     path_file.seek(0)
@@ -762,7 +762,7 @@ def age_transform():
     path_file.write(img_path)
 
     gen = input("请输入图片中人物的性别，男性请输入\"male\"，女性请输入\"female\"：")
-    gen += "_model "
+    gen += "_model"
 
     os.system("""
     cd Lifespan_Age_Transformation_Synthesis;
@@ -770,15 +770,15 @@ def age_transform():
     python download_models.py;
     CUDA_VISIBLE_DEVICES=0 python test.py --name 
     """ + gen + """
-    --which_epoch latest --display_id 0 --traverse --interp_step 0.05 --image_path_file path.txt --make_video --in_the_wild --verbose 
+    --which_epoch latest --display_id 0 --traverse --interp_step 0.05 --image_path_file ../assets/path.txt --make_video --in_the_wild --verbose 
     """)
 
-    res_vid = open("Lifespan_Age_Transformation_Synthesis/results/" + gen + "/test_latest/traversal/" + result_path)
-    content = res_vid.read()
-    res = open("results" + result_path, 'wb')
-    res.write(content)
-    res_vid.close()
-    res.close()
+    #res_vid = open("Lifespan_Age_Transformation_Synthesis/results/" + gen + "/test_latest/traversal/" + result_path)
+    #content = res_vid.read()
+    #res = open("results" + result_path, 'wb')
+    #res.write(content)
+    #res_vid.close()
+    #res.close()
     print("结果请查看根目录下的results文件夹")
 
     return
