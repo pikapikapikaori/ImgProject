@@ -1279,3 +1279,139 @@ def morphological():
 
     else:
         print("选择操作输入错误，请重新输入：")
+
+
+def smooth_or_sharpen():
+    print("可选操作：\n0.返回上一步\n1.空域平滑\n2.空域锐化\n3.频域平滑\n4.频域锐化")
+
+    try:
+        sos_choi = int(input("请选择要进行的基本操作："))
+    except ValueError as e:
+        print("选择基本操作输入错误，请重新输入：")
+        return
+
+    if sos_choi == 0:
+        return
+
+    elif sos_choi == 1:
+        img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
+        img_path = "assets/" + img_path
+        if not (os.path.exists(img_path)):
+            print("文件不存在！")
+
+            return
+        img = cv2.imread(img_path)
+
+        print("可选空域平滑方法：\n1.邻域平均法\n2.中值滤波法")
+        try:
+            fun_choi = int(input("请选择要使用的空域平滑方法："))
+        except ValueError as e:
+            print("选择方法输入错误，请重新输入：")
+            return
+
+        if fun_choi == 1:
+            try:
+                kernel_size = int(input("请输入计算单元核数："))
+            except ValueError as e:
+                print("核数输入错误，请重新输入：")
+                return
+
+            if kernel_size <= 0:
+                print("结构元大小输入错误，请重新输入：")
+                return
+
+            if (kernel_size % 2) == 0:
+                print("卷积核大小输入错误，请重新输入：")
+                return
+
+            source = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            result = cv2.blur(source, (kernel_size, kernel_size))
+
+            cv2.imshow("result", result)
+            cv2.imwrite("results/result.jpg", result)
+            print("结果请查看根目录下的results文件夹")
+
+        elif fun_choi == 2:
+            try:
+                kernel_size = int(input("请输入计算单元核数："))
+            except ValueError as e:
+                print("核数输入错误，请重新输入：")
+                return
+
+            if kernel_size <= 0:
+                print("结构元大小输入错误，请重新输入：")
+                return
+
+            if (kernel_size % 2) == 0:
+                print("卷积核大小输入错误，请重新输入：")
+                return
+
+            result = cv2.medianblur(img, kernel_size)
+
+            cv2.imshow("result", result)
+            cv2.imwrite("results/result.jpg", result)
+            print("结果请查看根目录下的results文件夹")
+
+    elif sos_choi == 2:
+        img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
+        img_path = "assets/" + img_path
+        if not (os.path.exists(img_path)):
+            print("文件不存在！")
+
+            return
+        img = cv2.imread(img_path)
+
+        print("可选空域平滑方法：\n1.Robert梯度算子\n2.Laplacian梯度算子\n3.Sobel算子")
+        try:
+            fun_choi = int(input("请选择要使用的空域平滑方法："))
+        except ValueError as e:
+            print("选择方法输入错误，请重新输入：")
+            return
+
+        if fun_choi == 1:
+            h = img.shape[0]
+            w = img.shape[1]
+            result = np.zeros(img.shape, np.uint8)
+            for i in range(1, h - 1):
+                for j in range(1, w - 1):
+                    result[i][j] = np.abs(img[i][j].astype(int) - img[i + 1][j + 1].astype(int)) + np.abs(
+                        img[i + 1][j].astype(int) - img[i][j + 1].astype(int))
+            cv2.imshow("result", result)
+            cv2.imwrite("results/result.jpg", result)
+            print("结果请查看根目录下的results文件夹")
+
+        elif fun_choi == 2:
+            h = img.shape[0]
+            w = img.shape[1]
+            result = np.zeros(img.shape, np.uint8)
+            for i in range(1, h - 1):
+                for j in range(1, w - 1):
+                    result[i][j] = 4 * img[i][j].astype(int) - img[i + 1][j].astype(int) - img[i - 1][j].astype(int) - \
+                                   img[i][j + 1].astype(int) - img[i][j - 1].astype(int)
+            cv2.imshow("result", result)
+            cv2.imwrite("results/result.jpg", result)
+            print("结果请查看根目录下的results文件夹")
+
+        elif fun_choi == 3:
+            kernx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
+            kerny = np.array([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
+            imgx = cv2.filter2D(img, -1, kernx, borderType=cv2.BORDER_REFLECT)
+            imgy = cv2.filter2D(img, -1, kerny, borderType=cv2.BORDER_REFLECT)
+            absx = cv2.convertScaleAbs(imgx)
+            absy = cv2.convertScaleAbs(imgy)
+            result = cv2.addWeighted((absx, 0.5, absy, 0.5, 0))
+            cv2.imshow("result", result)
+            cv2.imwrite("results/result.jpg", result)
+            print("结果请查看根目录下的results文件夹")
+
+        elif fun_choi == 4:
+            kernx = np.array([[1, 1, 1], [0, 0, 0], [-1, -1, -1]])
+            kerny = np.array([[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]])
+            imgx = cv2.filter2D(img, cv2.CV_16S, kernx)
+            imgy = cv2.filter2D(img, cv2.CV_16S, kerny)
+            absx = cv2.convertScaleAbs(imgx)
+            absy = cv2.convertScaleAbs(imgy)
+            result = cv2.addWeighted((absx, 0.5, absy, 0.5, 0))
+            cv2.imshow("result", result)
+            cv2.imwrite("results/result.jpg", result)
+            print("结果请查看根目录下的results文件夹")
