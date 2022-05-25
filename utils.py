@@ -22,6 +22,7 @@ def img_repair():
     if repa_choi == 0:
 
         return
+    # 高斯噪声
     elif repa_choi == 1:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -42,7 +43,7 @@ def img_repair():
         print("结果请查看根目录下的results文件夹")
 
         return
-
+    # 椒盐噪声
     elif repa_choi == 2:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -97,7 +98,7 @@ def img_repair():
         print("结果请查看根目录下的results文件夹")
 
         return
-
+    # 均值滤波
     elif repa_choi == 3:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -319,7 +320,7 @@ def img_segmentation():
     if seg_choi == 0:
 
         return
-
+    # Roberts
     elif seg_choi == 1:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -330,6 +331,20 @@ def img_segmentation():
             return
 
         img = cv2.imread(img_path)
+
+        try:
+            val1 = float(input("请输入处理后第一张图的权值（推荐设为0.5）："))
+            val2 = float(input("请输入处理后第二张图的权值（推荐设为0.5）："))
+        except ValueError as e:
+            print("权值输入错误，请重新输入：")
+            return
+
+        try:
+            exp = float(input("请输入偏置值（推荐设为0）："))
+        except ValueError as e:
+            print("偏置值输入错误，请重新输入：")
+            return
+
 
         grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -342,11 +357,11 @@ def img_segmentation():
         absX = cv2.convertScaleAbs(cal_x)
         absY = cv2.convertScaleAbs(cal_y)
 
-        Roberts = cv2.addWeighted(absX, 0.5, absY, 0.5, 0)
+        Roberts = cv2.addWeighted(absX, val1, absY, val2, exp)
 
         cv2.imwrite("results/result.jpg", Roberts)
         print("结果请查看根目录下的results文件夹")
-
+    # Sobel
     elif seg_choi == 2:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -355,6 +370,19 @@ def img_segmentation():
 
             return
         img = cv2.imread(img_path)
+
+        try:
+            val1 = float(input("请输入处理后第一张图的权值（推荐设为0.5）："))
+            val2 = float(input("请输入处理后第二张图的权值（推荐设为0.5）："))
+        except ValueError as e:
+            print("权值输入错误，请重新输入（推荐设为0）：")
+            return
+
+        try:
+            exp = float(input("请输入偏置值："))
+        except ValueError as e:
+            print("偏置值输入错误，请重新输入：")
+            return
 
         grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -367,11 +395,11 @@ def img_segmentation():
         absX = cv2.convertScaleAbs(cal_x)
         absY = cv2.convertScaleAbs(cal_y)
 
-        Sobel = cv2.addWeighted(absX, 0.5, absY, 0.5, 0)
+        Sobel = cv2.addWeighted(absX, val1, absY, val2, exp)
 
         cv2.imwrite("results/result.jpg", Sobel)
         print("结果请查看根目录下的results文件夹")
-
+    # Laplacian
     elif seg_choi == 3:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -381,17 +409,35 @@ def img_segmentation():
             return
         img = cv2.imread(img_path)
 
+        try:
+            kernel_size = int(input("请输入高斯滤波的卷积核大小k（大小为k*k）（推荐设为5）："))
+        except ValueError as e:
+            print("卷积核大小输入错误，请重新输入：")
+            return
+
+        try:
+            exp = float(input("请输入偏差值（推荐设为0）："))
+        except ValueError as e:
+            print("偏差值输入错误，请重新输入：")
+            return
+
+        try:
+            k_size = int(input("请输入Laplacian算子的核大小（推荐设为3）："))
+        except ValueError as e:
+            print("核大小输入错误，请重新输入：")
+            return
+
         grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-        blur = cv2.GaussianBlur(grayImage, (5, 5), 0)
+        blur = cv2.GaussianBlur(grayImage, (kernel_size, kernel_size), exp)
 
-        dst = cv2.Laplacian(blur, cv2.CV_16S, ksize=3)
+        dst = cv2.Laplacian(blur, cv2.CV_16S, ksize=k_size)
 
         Laplacian = cv2.convertScaleAbs(dst)
 
         cv2.imwrite("results/result.jpg", Laplacian)
         print("结果请查看根目录下的results文件夹")
-
+    # LoG
     elif seg_choi == 4:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -448,7 +494,7 @@ def img_segmentation():
 
         cv2.imwrite("results/result.jpg", image1)
         print("结果请查看根目录下的results文件夹")
-
+    # Canny
     elif seg_choi == 5:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -458,7 +504,19 @@ def img_segmentation():
             return
         img = cv2.imread(img_path)
 
-        blur = cv2.GaussianBlur(img, (3, 3), 0)
+        try:
+            kernel_size = int(input("请输入高斯滤波的卷积核大小k（大小为k*k）（推荐设为5）："))
+        except ValueError as e:
+            print("卷积核大小输入错误，请重新输入：")
+            return
+
+        try:
+            exp = float(input("请输入偏差值（推荐设为0）："))
+        except ValueError as e:
+            print("偏差值输入错误，请重新输入：")
+            return
+
+        blur = cv2.GaussianBlur(img, (kernel_size, kernel_size), exp)
 
         grayImage = cv2.cvtColor(blur, cv2.COLOR_BGR2GRAY)
 
@@ -469,7 +527,7 @@ def img_segmentation():
 
         cv2.imwrite("results/result.jpg", edge_output)
         print("结果请查看根目录下的results文件夹")
-
+    # HoughLines
     elif seg_choi == 6:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -500,7 +558,7 @@ def img_segmentation():
 
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # HoughLinesP
     elif seg_choi == 7:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -542,6 +600,7 @@ def histogram():
     if hist_choi == 0:
 
         return
+    # 灰度直方图
     elif hist_choi == 1:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -564,6 +623,7 @@ def histogram():
         print("结果请查看根目录下的results文件夹")
 
         return
+    # 彩色直方图
     elif hist_choi == 2:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -591,6 +651,7 @@ def histogram():
         print("结果请查看根目录下的results文件夹")
 
         return
+    # 分段线性处理
     elif hist_choi == 3:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -696,9 +757,16 @@ def age_transform():
 def basic_func():
     print("可选操作：\n0.返回上一步\n1.逻辑与\n2.逻辑或\n3.逻辑非\n4.加法\n5.减法\n6.乘法\n7.除法\n8.翻转\n9.平移\n10.旋转\n11.放大缩小"
           "\n12.仿射变换\n13.灰度化\n14.二值化")
-    basic_choi = int(input("请选择要进行的基本操作："))
+
+    try:
+        basic_choi = int(input("请选择要进行的基本操作："))
+    except ValueError as e:
+        print("选择基本操作输入错误，请重新输入：")
+        return
+
     if basic_choi == 0:
         return
+    # 逻辑与
     elif basic_choi == 1:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
@@ -719,7 +787,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 逻辑或
     elif basic_choi == 2:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
@@ -739,7 +807,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 逻辑非
     elif basic_choi == 3:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -752,7 +820,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 加法
     elif basic_choi == 4:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
@@ -772,7 +840,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 减法
     elif basic_choi == 5:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
@@ -792,7 +860,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 乘法
     elif basic_choi == 6:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
@@ -812,7 +880,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 除法
     elif basic_choi == 7:
         img_path1 = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path1 = "assets/" + img_path1
@@ -832,7 +900,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 翻转
     elif basic_choi == 8:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -862,7 +930,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 平移
     elif basic_choi == 9:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -879,7 +947,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 旋转
     elif basic_choi == 10:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -899,7 +967,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 放缩
     elif basic_choi == 11:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -935,7 +1003,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 仿射变换
     elif basic_choi == 12:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -982,7 +1050,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 灰度化
     elif basic_choi == 13:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -995,7 +1063,7 @@ def basic_func():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 二值化
     elif basic_choi == 14:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -1026,6 +1094,7 @@ def morphological():
     if morp_choi == 0:
 
         return
+    # 腐蚀
     elif morp_choi == 1:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -1059,7 +1128,7 @@ def morphological():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 膨胀
     elif morp_choi == 2:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -1093,7 +1162,7 @@ def morphological():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 开运算
     elif morp_choi == 3:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -1127,7 +1196,7 @@ def morphological():
         cv2.imshow("result", result)
         cv2.imwrite("results/result.jpg", result)
         print("结果请查看根目录下的results文件夹")
-
+    # 闭运算
     elif morp_choi == 4:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
