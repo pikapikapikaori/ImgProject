@@ -127,7 +127,7 @@ def img_repair():
                 return
 
         try:
-            filter_size_p, filter_size_q = input("请输入滤波器大小p*q（格式为\"p q\"）：").split()
+            filter_size_p, filter_size_q = input("请输入滤波器大小p*q（奇数，格式为\"p q\"）：").split()
         except ValueError as e:
             print("输入参数个数不足，请重新输入：")
             return
@@ -140,6 +140,10 @@ def img_repair():
             return
 
         if (filter_size_p <= 0) or (filter_size_q <= 0):
+            print("滤波器大小输入错误，请重新输入：")
+            return
+
+        if ((filter_size_p % 2) == 0) or ((filter_size_q % 2) == 0):
             print("滤波器大小输入错误，请重新输入：")
             return
 
@@ -195,7 +199,7 @@ def img_repair():
         print("结果请查看根目录下的results文件夹")
 
         return
-
+    # 统计滤波
     elif repa_choi == 4:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -239,7 +243,7 @@ def img_repair():
         print("结果请查看根目录下的results文件夹")
 
         return
-
+    # 频域滤波
     elif repa_choi == 5:
         img_path = input("请将图像放置于根目录下的assets文件夹中，并输入图像的名称：")
         img_path = "assets/" + img_path
@@ -410,8 +414,16 @@ def img_segmentation():
         img = cv2.imread(img_path)
 
         try:
-            kernel_size = int(input("请输入高斯滤波的卷积核大小k（大小为k*k）（推荐设为5）："))
+            kernel_size = int(input("请输入高斯滤波的卷积核大小k（奇数，大小为k*k）（推荐设为5）："))
         except ValueError as e:
+            print("卷积核大小输入错误，请重新输入：")
+            return
+
+        if kernel_size <= 0:
+            print("卷积核大小输入错误，请重新输入：")
+            return
+
+        if (kernel_size % 2) == 0:
             print("卷积核大小输入错误，请重新输入：")
             return
 
@@ -422,8 +434,16 @@ def img_segmentation():
             return
 
         try:
-            k_size = int(input("请输入Laplacian算子的核大小（推荐设为3）："))
+            k_size = int(input("请输入Laplacian算子的核大小（奇数，推荐设为3）："))
         except ValueError as e:
+            print("核大小输入错误，请重新输入：")
+            return
+
+        if k_size <= 0:
+            print("核大小输入错误，请重新输入：")
+            return
+
+        if (k_size % 2) == 0:
             print("核大小输入错误，请重新输入：")
             return
 
@@ -505,8 +525,16 @@ def img_segmentation():
         img = cv2.imread(img_path)
 
         try:
-            kernel_size = int(input("请输入高斯滤波的卷积核大小k（大小为k*k）（推荐设为5）："))
+            kernel_size = int(input("请输入高斯滤波的卷积核大小k（奇数，大小为k*k）（推荐设为5）："))
         except ValueError as e:
+            print("卷积核大小输入错误，请重新输入：")
+            return
+
+        if kernel_size <= 0:
+            print("卷积核大小输入错误，请重新输入：")
+            return
+
+        if (kernel_size % 2) == 0:
             print("卷积核大小输入错误，请重新输入：")
             return
 
@@ -1108,13 +1136,17 @@ def morphological():
 
         try:
             kernel_type = int(input("请输入要使用的结构元类型："))
-            kernel_size = int(input("请输入要使用的结构元大小（k*k）："))
+            kernel_size = int(input("请输入要使用的结构元大小k（奇数，大小为k*k）："))
         except ValueError as e:
             print("结构元类型或结构元大小输入错误，请重新输入：")
             return
 
         if kernel_size <= 0:
             print("结构元大小输入错误，请重新输入：")
+            return
+
+        if (kernel_size % 2) == 0:
+            print("卷积核大小输入错误，请重新输入：")
             return
 
         if kernel_type == 1:
@@ -1142,13 +1174,17 @@ def morphological():
 
         try:
             kernel_type = int(input("请输入要使用的结构元类型："))
-            kernel_size = int(input("请输入要使用的结构元大小（k*k）："))
+            kernel_size = int(input("请输入要使用的结构元大小k（奇数，大小为k*k）："))
         except ValueError as e:
             print("结构元类型或结构元大小输入错误，请重新输入：")
             return
 
         if kernel_size <= 0:
             print("结构元大小输入错误，请重新输入：")
+            return
+
+        if (kernel_size % 2) == 0:
+            print("卷积核大小输入错误，请重新输入：")
             return
 
         if kernel_type == 1:
@@ -1176,13 +1212,17 @@ def morphological():
 
         try:
             kernel_type = int(input("请输入要使用的结构元类型："))
-            kernel_size = int(input("请输入要使用的结构元大小（k*k）："))
+            kernel_size = int(input("请输入要使用的结构元大小k（奇数，大小为k*k）："))
         except ValueError as e:
             print("结构元类型或结构元大小输入错误，请重新输入：")
             return
 
         if kernel_size <= 0:
             print("结构元大小输入错误，请重新输入：")
+            return
+
+        if (kernel_size % 2) == 0:
+            print("卷积核大小输入错误，请重新输入：")
             return
 
         if kernel_type == 1:
@@ -1210,13 +1250,17 @@ def morphological():
 
         try:
             kernel_type = int(input("请输入要使用的结构元类型："))
-            kernel_size = int(input("请输入要使用的结构元大小（k*k）："))
+            kernel_size = int(input("请输入要使用的结构元大小k（奇数，大小为k*k）："))
         except ValueError as e:
             print("结构元类型或结构元大小输入错误，请重新输入：")
             return
 
         if kernel_size <= 0:
             print("结构元大小输入错误，请重新输入：")
+            return
+
+        if (kernel_size % 2) == 0:
+            print("卷积核大小输入错误，请重新输入：")
             return
 
         if kernel_type == 1:
